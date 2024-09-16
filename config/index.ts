@@ -3,12 +3,12 @@ import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 import devConfig from './dev'
 import prodConfig from './prod'
 import NutUIResolver from '@nutui/auto-import-resolver'
-
+import ComponentsPlugin from 'unplugin-vue-components/webpack'
 import Components from 'unplugin-vue-components/vite'
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
-export default defineConfig<'vite'>(async (merge, { command, mode }) => {
-  const baseConfig: UserConfigExport<'vite'> = {
+export default defineConfig<'webpack5'>(async (merge, { command, mode }) => {
+  const baseConfig: UserConfigExport<'webpack5'> = {
     projectName: 'myApp',
     date: '2024-9-9',
     designWidth (input) {
@@ -38,12 +38,12 @@ export default defineConfig<'vite'>(async (merge, { command, mode }) => {
     },
     framework: 'vue3',
     compiler: {
-      type: 'vite',
-      vitePlugins: [
-        Components({
-          resolvers: [NutUIResolver({taro: true})]
-        })
-      ]
+      type: 'webpack5',// ,'vite',
+      // vitePlugins: [
+      //   Components({
+      //     resolvers: [NutUIResolver({taro: true})]
+      //   })
+      // ]
     },
     mini: {
       postcss: {
@@ -60,7 +60,12 @@ export default defineConfig<'vite'>(async (merge, { command, mode }) => {
             generateScopedName: '[name]__[local]___[hash:base64:5]'
           }
         }
-      }
+      },
+      webpackChain(chain) {
+        chain.plugin('unplugin-vue-components').use(ComponentsPlugin({
+          resolvers: [NutUIResolver({taro: true})]
+        }))
+      },
     },
     h5: {
       publicPath: '/',
@@ -83,7 +88,12 @@ export default defineConfig<'vite'>(async (merge, { command, mode }) => {
             generateScopedName: '[name]__[local]___[hash:base64:5]'
           }
         }
-      }
+      },
+      webpackChain(chain) {
+        chain.plugin('unplugin-vue-components').use(ComponentsPlugin({
+          resolvers: [NutUIResolver({taro: true})]
+        }))
+      },
     },
     rn: {
       appName: 'taroDemo',
