@@ -9,6 +9,13 @@
     "css": "Sass",
     "framework": "Vue3"
   },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "author": "",
+  "license": "MIT",
   "scripts": {
     "build:weapp": "taro build --type weapp",
     "build:swan": "taro build --type swan",
@@ -29,13 +36,6 @@
     "open": "weapp open -p",
     "postinstall": "weapp-tw patch"
   },
-  "browserslist": [
-    "last 3 versions",
-    "Android >= 4.1",
-    "ios >= 8"
-  ],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.18.6",
     "@babel/runtime": "^7.7.7",
@@ -74,13 +74,13 @@
     "postcss": "^8.4.47",
     "sass": "^1.60.0",
     "stylelint": "^14.4.0",
-    "tailwindcss": "^3.4.11",
+    "tailwindcss": "^3.4.18",
     "terser": "^5.16.8",
     "tsconfig-paths-webpack-plugin": "^4.0.1",
     "typescript": "^5.1.0",
     "unplugin-vue-components": "^0.27.4",
     "vite": "^5.4.5",
-    "weapp-ide-cli": "^2.0.3",
-    "weapp-tailwindcss": "^3.5.2"
+    "weapp-ide-cli": "^4.0.0",
+    "weapp-tailwindcss": "^4.5.1"
   }
 }
